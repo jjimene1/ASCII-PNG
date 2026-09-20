@@ -47,13 +47,12 @@ fn main() {
 
     third_pass.save("/root/ASCII-PNG/ascii-png/src/edge_test.jpg").unwrap();
 
-    //seperate processing chain we define the following as our ascii characters
-    let ascii_char: [char; 11] = ['@', '#', 'S', '%', '?', '*', '+', ';', ':', ',', '.'];
+    let ascii_char: [char; 11] = ['.', ',', ':', ';', '+', '*', '?', '%', 'S', '#', '@'];
 
     //to print to console or better see the image we need to resize it 
     let nwidth = 480;
     let nheight = 200;
-    let grayscale_small = grayscale.resize(nwidth, nheight, image::imageops::FilterType::Gaussian);
+    let grayscale_small = grayscale.resize(nwidth, nheight, image::imageops::FilterType::Gaussian); //maintains aspect ratio
     grayscale_small.save("/root/ASCII-PNG/ascii-png/src/resize_test.jpg").unwrap();
 
     let x = grayscale_small.width();
