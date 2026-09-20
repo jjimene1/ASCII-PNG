@@ -15,5 +15,25 @@ fn main() {
     //turn image grayscale
     let grayscale = img.grayscale();
 
-    grayscale.save("/root/ASCII-PNG/ascii-png/src/grayscale_test.jpg").unwrap();
+    //kernel horizontal
+    let kernel_horizontal: [f32; 9] = [
+        -1.0, -1.0, -1.0, 
+        0.0, 0.0, 0.0, 
+        1.0, 1.0, 1.0
+    ];
+
+    //kernel vertical
+    let kernel_vertical: [f32; 9] = [
+        -1.0, 0.0, 1.0, 
+        -1.0, 0.0, 1.0, 
+        -1.0, 0.0, 1.0];
+
+    //edge detected image
+    let mut edgy = grayscale.filter3x3(&kernel_horizontal);
+
+    edgy.save("/root/ASCII-PNG/ascii-png/src/edge_test.jpg").unwrap();
+    
+    edgy.invert();
+
+    edgy.save("/root/ASCII-PNG/ascii-png/src/inverted_edge.jpg").unwrap();
 }
